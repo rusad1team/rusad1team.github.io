@@ -1,7 +1,20 @@
 "use strict";
 
 $(document).ready(function () {
-  //sadwich
+  document.addEventListener('mousemove', function (e) {
+    return parallax(e);
+  });
+
+  var parallax = function parallax(e) {
+    document.querySelectorAll('.layer').forEach(function (layer) {
+      var speed = layer.getAttribute('data-speed');
+      var x = (window.innerWidth - e.pageX * speed) / 150;
+      var y = (window.innerHeight - e.pageY * speed) / 150;
+      layer.style.transform = "translate(".concat(x, "px, ").concat(y, "px)");
+    });
+  }; //sadwich
+
+
   if ($(window).width() < 1025) {
     var btnCategories = $(".sandwich"); // указываем кнопку
 
@@ -119,6 +132,11 @@ $(document).ready(function () {
         adaptiveHeight: true
       }
     }]
+  });
+  $('.client-slider').slick({
+    arrows: false,
+    dots: true,
+    autoplay: false
   });
 });
 $(window).on('resize orientationchange', function () {
