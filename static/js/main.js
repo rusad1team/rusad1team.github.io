@@ -17,19 +17,14 @@ function preloderFunction() {
     if ($('#ctn-preloader').hasClass('loaded')) {
       // It is so that once the preloader is gone, the entire preloader section will removed
       $('#preloader').delay(1000).queue(function () {
-        $(this).remove(); // If you want to do something after removing preloader:
-
-        afterLoad();
+        $(this).remove();
       });
     }
   }, 1500);
 }
 
-function afterLoad() {// After Load function body!
-} //Code by ARiyou2000
-
-
 $(document).ready(function () {
+  //типо анимация 
   document.addEventListener('mousemove', function (e) {
     return parallax(e);
   });
@@ -66,6 +61,7 @@ $(document).ready(function () {
       $('.sandwich-line').toggleClass('sandwich--active');
       $('.nav-overlay').slideToggle('fast');
       $('.content').toggleClass('content--active');
+      $('.header-info .social-icon').fadeToggle();
     });
   };
 
@@ -90,6 +86,7 @@ $(document).ready(function () {
   $('.popup-close').on("click", function () {
     $.magnificPopup.close();
   }); //sliders
+  //индекс баннер слайдер
 
   $('.banner-slider').slick({
     arrows: false,
@@ -130,7 +127,8 @@ $(document).ready(function () {
       slidesToShow: 1,
       arrows: false
     }]
-  });
+  }); //главная отзывы клиентов    
+
   $('.rev-slider-js').slick({
     centerMode: true,
     slidesToShow: 4,
@@ -162,16 +160,31 @@ $(document).ready(function () {
         adaptiveHeight: true
       }
     }]
-  });
+  }); //слайдер страница бренд клиенты
+
   $('.client-slider').slick({
     arrows: false,
     dots: true,
     autoplay: false
+  }); //бренд упаковка на выбор
+
+  $('.pac').slick({
+    mobileFirst: true,
+    arrows: false,
+    adaptiveHeight: true,
+    dots: true,
+    responsive: [{
+      breakpoint: 790,
+      settings: "unslick",
+      slidesToShow: 1,
+      arrows: false
+    }]
   });
 });
 $(window).on('resize orientationchange', function () {
-  $('.js-slider-choose, .sort-bottom__js, .sort-top__js').slick('resize');
-});
+  $('.js-slider-choose, .sort-bottom__js, .sort-top__js, .pac').slick('resize');
+}); //главная рассчитать кол-во кофе
+
 $(document).ready(function () {
   var $input = $("#range"),
       $output = $("#output"),
