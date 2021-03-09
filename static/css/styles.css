@@ -2996,6 +2996,9 @@ img.mfp-img {
       max-width: 110%;
       margin-left: -70px; }
 
+.s-o-serve {
+  background: #fff; }
+
 .o-serve-item {
   -webkit-box-align: center;
   -ms-flex-align: center;
