@@ -65,7 +65,20 @@ $(document).ready(function () {
     });
   };
 
-  sanwichToggle(); //form-popup
+  sanwichToggle(); //skill bar
+
+  var skillBar = $('.range-item__progress');
+  $(window).on('scroll', function () {
+    var SkillLocation = $("#s-range").offset().top;
+    var scrollLocation = $(this).scrollTop();
+    skillBar.each(function () {
+      if (SkillLocation - 400 <= scrollLocation) {
+        $(this).find('.inner-skill-bar').animate({
+          width: $(this).attr('data-percent')
+        }, 1500);
+      }
+    });
+  }); //form-popup
 
   $('.popup-with-form').magnificPopup({
     type: 'inline',
@@ -99,8 +112,9 @@ $(document).ready(function () {
   $('.js-slider-choose').slick({
     mobileFirst: true,
     arrows: false,
+    dots: true,
     responsive: [{
-      breakpoint: 480,
+      breakpoint: 500,
       settings: "unslick",
       slidesToShow: 1,
       arrows: false
