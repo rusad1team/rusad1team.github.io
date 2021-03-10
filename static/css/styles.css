@@ -3018,10 +3018,25 @@ img.mfp-img {
     display: flex;
     -webkit-box-align: end;
     -ms-flex-align: end;
-    align-items: flex-end; }
+    align-items: flex-end;
+    height: 785px; }
+    @media (max-width: 1300px) {
+      .s-o-banner .banner-right {
+        height: auto; } }
     .s-o-banner .banner-right img {
-      max-width: 110%;
+      max-width: 108%;
       margin-left: -70px; }
+    .s-o-banner .banner-right__absolute {
+      position: absolute;
+      margin-left: 0;
+      right: 80px;
+      top: 0; }
+      @media (max-width: 1100px) {
+        .s-o-banner .banner-right__absolute {
+          display: none; } }
+    .s-o-banner .banner-right__pic {
+      position: relative;
+      z-index: 2; }
 
 .s-o-serve {
   background: #fff; }
@@ -3113,7 +3128,18 @@ img.mfp-img {
   background-repeat: no-repeat;
   background-size: cover;
   padding: 170px 0 190px;
-  background-position: center; }
+  background-position: center;
+  position: relative; }
+  @media (max-width: 500px) {
+    .s-special::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      background-color: rgba(245, 245, 245, 0.8); } }
 
 .special {
   display: -webkit-box;
@@ -3121,7 +3147,9 @@ img.mfp-img {
   display: flex;
   -webkit-box-pack: end;
   -ms-flex-pack: end;
-  justify-content: flex-end; }
+  justify-content: flex-end;
+  position: relative;
+  z-index: 3; }
   .special-wrapper {
     width: 50%; }
   .special .sec-title {
@@ -3444,6 +3472,8 @@ img.mfp-img {
   background-size: cover;
   background-position: center;
   height: 1056px; }
+  .s-optprice:before {
+    content: none; }
   @media (max-width: 1400px) {
     .s-optprice {
       height: auto; } }
@@ -3467,16 +3497,20 @@ img.mfp-img {
   display: none; }
 
 .s-b-banner {
-  padding-top: 240px; }
+  padding: 240px 0 184px; }
+  .s-b-banner .b-banner .banner-left {
+    max-width: 600px; }
 
-.b-banner .banner-left {
-  max-width: 600px; }
-  .b-banner .banner-left .banner-title {
-    margin-bottom: 50px; }
-
-.b-banner .banner-list {
-  margin-bottom: 80px;
-  line-height: 32px; }
+.b-banner .banner-right {
+  height: auto;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: flex-start; }
+  .b-banner .banner-right img {
+    margin-left: 0; }
 
 .fityou .place-item {
   height: 410px;
@@ -4740,7 +4774,7 @@ img.mfp-img {
   .client-slider {
     width: 100%; }
   .s-b-banner {
-    padding-top: 130px; } }
+    padding: 130px 0 130px; } }
 
 @media (max-width: 950px) {
   .s-b-banner {
