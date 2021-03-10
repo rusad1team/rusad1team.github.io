@@ -390,8 +390,11 @@ button {
 a {
   text-decoration: none; }
 
-form {
+form input {
   -webkit-appearance: none; }
+
+form .form-input {
+  border: 1px solid rgba(0, 0, 0, 0.05); }
 
 /* SASS mixin end */
 /* Load Settings */
@@ -4860,4 +4863,3 @@ img.mfp-img {
 @media (max-width: 500px) {
   .s-pac-abW {
     display: none; } }
-
