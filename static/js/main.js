@@ -67,17 +67,30 @@ $(document).ready(function () {
 
   sanwichToggle(); //skill bar
 
-  var skillBar = $('.range-item__progress');
-  $(window).on('scroll', function () {
-    var SkillLocation = $("#s-range").offset().top;
-    var scrollLocation = $(this).scrollTop();
-    skillBar.each(function () {
-      if (SkillLocation - 400 <= scrollLocation) {
-        $(this).find('.inner-skill-bar').animate({
-          width: $(this).attr('data-percent')
-        }, 1500);
-      }
+  if ($('.s-banner').attr("skill")) {
+    var skillBar = $('.range-item__progress');
+    $(window).on('scroll', function () {
+      var SkillLocation = $("#s-range").offset().top;
+      var scrollLocation = $(this).scrollTop();
+      skillBar.each(function () {
+        if (SkillLocation - 400 <= scrollLocation) {
+          $(this).find('.inner-skill-bar').animate({
+            width: $(this).attr('data-percent')
+          }, 1500);
+        }
+      });
     });
+  } //popup title 
+
+
+  $('.popup-with-form').on('click', function () {
+    var title = $(this).attr("title-popup");
+
+    if ($(this).attr("title-popup")) {
+      $('.popup-title-in').text(title);
+    } else {
+      $('.popup-title-in').text('получите кофемашину');
+    }
   }); //form-popup
 
   $('.popup-with-form').magnificPopup({
@@ -106,8 +119,8 @@ $(document).ready(function () {
     fade: true,
     lazyLoad: 'ondemand',
     dots: true,
-    autoplay: false,
-    adaptiveHeight: true
+    autoplay: false //adaptiveHeight: true,
+
   });
   $('.js-slider-choose').slick({
     mobileFirst: true,
