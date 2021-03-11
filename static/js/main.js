@@ -111,6 +111,9 @@ $(document).ready(function () {
   });
   $('.popup-close').on("click", function () {
     $.magnificPopup.close();
+  });
+  $('.ok-btn').on("click", function () {
+    $.magnificPopup.close();
   }); //sliders
   //индекс баннер слайдер
 
@@ -206,6 +209,17 @@ $(document).ready(function () {
       slidesToShow: 1,
       arrows: false
     }]
+  }); //validation
+
+  $('form').on('submit', function () {
+    var form = $(this);
+
+    if (form[0].checkValidity()) {
+      form.find('.form2-popup__wrapper').hide();
+      form.find('.ok').show();
+      $.post('mail.php', form.serialize());
+      return false;
+    }
   });
 });
 $(window).on('resize orientationchange', function () {
