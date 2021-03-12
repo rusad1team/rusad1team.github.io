@@ -209,16 +209,61 @@ $(document).ready(function () {
       slidesToShow: 1,
       arrows: false
     }]
-  }); //validation
+  }); //validate
 
-  $('form').on('submit', function () {
-    var form = $(this);
+  var selector = document.querySelectorAll('input[type="tel"]');
+  var tel = new Inputmask("+7 (999) 999-99-99");
+  tel.mask(selector);
 
-    if (form[0].checkValidity()) {
-      form.find('.form2-popup__wrapper').hide();
-      form.find('.ok').show();
-      $.post('mail.php', form.serialize());
-      return false;
+  var validateForms = function validateForms(selector, rules, succesModal, yaGoal) {
+    new window.JustValidate(selector, {
+      rules: rules,
+      messages: {
+        tel: "Введите корректный номер"
+      },
+      submitHandler: function submitHandler(form) {
+        $('.form2-popup__wrapper').hide();
+        $('.ok').show();
+        var formData = new FormData(form);
+        var xhr = new XMLHttpRequest();
+
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+              console.log('отправлено');
+            }
+          }
+        };
+
+        xhr.open('POST', 'mail.php', true);
+        xhr.send(formData);
+        form.reset();
+      }
+    });
+  };
+
+  validateForms('#form1', {
+    tel: {
+      required: true,
+      strength: {
+        custom: '[^_]$'
+      }
+    }
+  });
+  validateForms('#form2', {
+    tel: {
+      required: true,
+      strength: {
+        custom: '[^_]$'
+      }
+    }
+  });
+  validateForms('#form3', {
+    tel: {
+      required: true,
+      strength: {
+        custom: '[^_]$'
+      }
     }
   });
 });
