@@ -222,8 +222,8 @@ $(document).ready(function () {
         tel: "Введите корректный номер"
       },
       submitHandler: function submitHandler(form) {
-        $('.form2-popup__wrapper').hide();
-        $('.ok').show();
+        $(form).children('.form2-popup__wrapper').hide();
+        $(form).children('.ok').show();
         var formData = new FormData(form);
         var xhr = new XMLHttpRequest();
 
@@ -235,7 +235,7 @@ $(document).ready(function () {
           }
         };
 
-        xhr.open('POST', 'mail.php', true);
+        xhr.open('POST', '/request', true);
         xhr.send(formData);
         form.reset();
       }
@@ -258,14 +258,19 @@ $(document).ready(function () {
       }
     }
   });
-  validateForms('#form3', {
-    tel: {
-      required: true,
-      strength: {
-        custom: '[^_]$'
+
+  if ($('.s-banner').attr("banner")) {
+    validateForms('#form3', {
+      tel: {
+        required: true,
+        strength: {
+          custom: '[^_]$'
+        }
       }
-    }
-  });
+    });
+  }
+
+  ;
 });
 $(window).on('resize orientationchange', function () {
   $('.js-slider-choose, .sort-bottom__js, .sort-top__js, .pac').slick('resize');
