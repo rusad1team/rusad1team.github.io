@@ -2226,17 +2226,34 @@ input[type=number]::-webkit-outer-spin-button {
 
 .s-form2 {
   padding: 80px 0 112px; }
+  .s-form2 .container {
+    position: relative; }
 
 .form2 {
   -webkit-box-align: end;
   -ms-flex-align: end;
-  align-items: flex-end;
-  background-image: url(../images/common/form2-bg.png);
-  background-repeat: no-repeat;
-  background-position: right; }
+  align-items: flex-end; }
   .form2 > *:not(:last-child) {
     margin-right: 80px; }
+  .form2-right__indexA {
+    position: absolute;
+    right: 0;
+    bottom: -100px; }
+    @media (max-width: 1100px) {
+      .form2-right__indexA {
+        bottom: 0; } }
+    @media (max-width: 950px) {
+      .form2-right__indexA {
+        display: none; } }
+  .form2-right picture {
+    position: relative;
+    z-index: 2; }
+    @media (max-width: 1100px) {
+      .form2-right picture img {
+        height: auto; } }
   .form2-popup {
+    position: relative;
+    z-index: 2;
     padding: 72px 110px;
     width: 100%;
     max-width: 640px;
@@ -3527,9 +3544,18 @@ form {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  height: 1056px; }
+  position: relative;
+  height: 1056px;
+  overflow: hidden; }
   .s-optprice:before {
     content: none; }
+  .s-optprice__absolute {
+    position: absolute;
+    top: 105px;
+    left: -50px; }
+    @media (max-width: 950px) {
+      .s-optprice__absolute {
+        display: none; } }
   @media (max-width: 1400px) {
     .s-optprice {
       height: auto; } }
@@ -3882,22 +3908,26 @@ form {
   background-image: none;
   position: relative;
   overflow: hidden; }
-  .s-b-form::before {
-    content: url(../images/common/brand/b-form1.png);
+  .s-b-form__before {
     display: block;
     width: auto;
     height: auto;
     position: absolute;
     left: 0;
-    top: 0; }
-  .s-b-form::after {
-    content: url(../images/common/brand/b-form2.png);
+    top: 50px; }
+    @media (max-width: 500px) {
+      .s-b-form__before {
+        display: none; } }
+  .s-b-form__after {
     display: block;
     width: auto;
     height: auto;
     position: absolute;
     right: 0;
     bottom: 0; }
+    @media (max-width: 500px) {
+      .s-b-form__after {
+        display: none; } }
   .s-b-form .sec-title_wrapper {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -4246,8 +4276,11 @@ form {
       width: 100%; }
 
 .a-form {
-  background-image: url(../images/common/about/a-form.png);
-  background-size: contain; }
+  background: none; }
+  .a-form .container {
+    position: relative; }
+  .a-form__absolute {
+    position: absolute; }
 
 @media (max-width: 1100px) {
   .social > *:not(:last-child) {
@@ -4953,4 +4986,3 @@ form {
 @media (max-width: 500px) {
   .s-pac-abW {
     display: none; } }
-
