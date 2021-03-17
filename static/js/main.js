@@ -1,28 +1,25 @@
 "use strict";
 
-$(document).ready(preloderFunction());
-
-function preloderFunction() {
-  setTimeout(function () {
-    // Force Main page to show from the Start(Top) even if user scroll down on preloader - Primary (Before showing content)
-    // Model 1 - Fast            
-    document.getElementById("page-top").scrollIntoView(); // Model 2 - Smooth             
-    // document.getElementById("page-top").scrollIntoView({behavior: 'smooth'});
-    // Removing Preloader:
-
-    $('#ctn-preloader').addClass('loaded'); // Once the preloader has finished, the scroll appears 
-
-    $('body').removeClass('no-scroll-y');
-
-    if ($('#ctn-preloader').hasClass('loaded')) {
-      // It is so that once the preloader is gone, the entire preloader section will removed
-      $('#preloader').delay(1000).queue(function () {
-        $(this).remove();
-      });
-    }
-  }, 1500);
-}
-
+// $(document).ready(preloderFunction());
+// function preloderFunction() {
+//     setTimeout(function() {
+//         // Force Main page to show from the Start(Top) even if user scroll down on preloader - Primary (Before showing content)
+//         // Model 1 - Fast            
+//         document.getElementById("page-top").scrollIntoView();
+//         // Model 2 - Smooth             
+//         // document.getElementById("page-top").scrollIntoView({behavior: 'smooth'});
+//         // Removing Preloader:
+//         $('#ctn-preloader').addClass('loaded');  
+//         // Once the preloader has finished, the scroll appears 
+//         $('body').removeClass('no-scroll-y');
+//         if ($('#ctn-preloader').hasClass('loaded')) {
+//             // It is so that once the preloader is gone, the entire preloader section will removed
+//             $('#preloader').delay(1000).queue(function() {
+//                 $(this).remove();
+//             });
+//         }
+//     }, 1500);
+// }
 $(document).ready(function () {
   //типо анимация 
   document.addEventListener('mousemove', function (e) {
@@ -225,6 +222,8 @@ $(document).ready(function () {
         $(form).children('.form2-popup__wrapper').hide();
         $(form).children('.ok').show();
         var formData = new FormData(form);
+        var path = window.location.pathname === "/" ? "/index" : window.location.pathname;
+        formData.append("question", path);
         var xhr = new XMLHttpRequest();
 
         xhr.onreadystatechange = function () {
