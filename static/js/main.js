@@ -21,7 +21,8 @@
 //     }, 1500);
 // }
 $(document).ready(function () {
-  //типо анимация 
+  AOS.init(); //типо анимация 
+
   document.addEventListener('mousemove', function (e) {
     return parallax(e);
   });
@@ -192,7 +193,8 @@ $(document).ready(function () {
   $('.client-slider').slick({
     arrows: false,
     dots: true,
-    autoplay: false
+    autoplay: true,
+    autoplaySpeed: 3000
   }); //бренд упаковка на выбор
 
   $('.pac').slick({
