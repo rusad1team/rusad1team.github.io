@@ -27,5 +27,36 @@ $(document).ready(function () {
 
   popupAct();
   var popUp = document.querySelector('.popup');
-  var overFlow = document.querySelector('.popup-over');
+  var overFlow = document.querySelector('.popup-over'); //faq
+  // $('.faq-item__header').on('click', function() {
+  //     $(this).next().slideToggle();
+  // })
+
+  var accordion = document.querySelector('.faq-content');
+  var acItems = document.querySelectorAll('.faq-item');
+  acItems.forEach(function (item) {
+    var headTitle = item.querySelector('.faq-item__header');
+    headTitle.addEventListener('click', function (e) {
+      var opened_item = accordion.querySelector('.is-open'); //toggle current item
+
+      toggle_item(item); //закрыть другие открытые вкладки
+
+      if (opened_item && opened_item !== item) {
+        toggle_item(opened_item);
+      }
+    });
+  });
+
+  var toggle_item = function toggle_item(item) {
+    var body = item.querySelector('.faq-item__body');
+    var content = item.querySelector('.faq-item__content');
+
+    if (item.classList.contains('is-open')) {
+      body.removeAttribute('style');
+      item.classList.remove('is-open');
+    } else {
+      body.style.height = body.scrollHeight + 'px';
+      item.classList.add('is-open');
+    }
+  };
 });
