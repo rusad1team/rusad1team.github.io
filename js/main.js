@@ -1,11 +1,49 @@
 "use strict";
 
 $(document).ready(function () {
-  $('.rev-slider').slick({
-    dots: false,
-    prevArrow: $('.rev-nav__prev'),
-    nextArrow: $('.rev-nav__next')
-  });
+  //sandwich
+  var sanwichToggle = function sanwichToggle() {
+    $('.sandwich').on('click', function () {
+      $('.nav-overlay').fadeToggle('fast');
+      $(this).toggleClass('is-active');
+      $('.content').toggleClass('content--active');
+    });
+    $(window).resize(function () {
+      if ($(window).width() <= 1100) {
+        var btnCategories = $(".sandwich"); // указываем кнопку
+
+        var categories = $(".nav-overlay");
+        $(document).mouseup(function (e) {
+          // событие клика по веб-документу
+          if (!btnCategories.is(e.target) && btnCategories.has(e.target).length === 0 && // если клик был не по нашему блоку
+          !categories.is(e.target) && categories.has(e.target).length === 0 // и не по его дочерним элементам
+          ) {
+              categories.fadeOut(); // скрываем его
+
+              $('.sandwich').removeClass('is-active');
+              $('.content').removeClass('content--active');
+            }
+        });
+      }
+
+      ;
+
+      if ($(window).width() > 1100 && $('.nav-overlay').attr('style')) {
+        $('.nav-overlay').removeAttr('style');
+        $('.sandwich').removeClass('is-active');
+      }
+
+      ;
+
+      if ($(window).width() > 1101) {
+        $('.content').removeClass('content--active');
+      }
+
+      ;
+    });
+  };
+
+  sanwichToggle();
 
   function popupAct() {
     var popupBtn = document.querySelectorAll('.popup-btn'); //включить, выключить по клику
@@ -58,5 +96,46 @@ $(document).ready(function () {
       body.style.height = body.scrollHeight + 'px';
       item.classList.add('is-open');
     }
-  };
+  }; //accordion quality
+
+
+  if ($(window).width() <= 768) {
+    $('.qyality-item').on('click', function () {
+      $(this).find('.descr').slideToggle();
+      $(this).find('.title').toggleClass('qya--active');
+    });
+  }
+
+  ; //sliders
+
+  $('.rev-slider').slick({
+    dots: false,
+    prevArrow: $('.rev-nav__prev'),
+    nextArrow: $('.rev-nav__next')
+  });
+  $('.sorts-wrap').slick({
+    mobileFirst: true,
+    slidesToShow: 1,
+    arrows: false,
+    dots: true,
+    responsive: [{
+      breakpoint: 769,
+      settings: "unslick"
+    }]
+  });
+  $('.profi-items').slick({
+    mobileFirst: true,
+    arrows: false,
+    dots: true,
+    responsive: [{
+      breakpoint: 800,
+      settings: "unslick"
+    }, {
+      breakpoint: 799,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 1
+      }
+    }]
+  });
 });
