@@ -43,7 +43,7 @@ $(document).ready(function () {
     });
   };
 
-  sanwichToggle();
+  sanwichToggle(); //popup
 
   function popupAct() {
     var popupBtn = document.querySelectorAll('.popup-btn'); //включить, выключить по клику
@@ -63,12 +63,16 @@ $(document).ready(function () {
     }
   }
 
+  $('.close-me').on('click', function () {
+    $('.popup-over').removeClass('popup-active');
+  });
   popupAct();
   var popUp = document.querySelector('.popup');
   var overFlow = document.querySelector('.popup-over'); //faq
   // $('.faq-item__header').on('click', function() {
   //     $(this).next().slideToggle();
   // })
+  //accordion
 
   var accordion = document.querySelector('.faq-content');
   var acItems = document.querySelectorAll('.faq-item');
@@ -137,5 +141,87 @@ $(document).ready(function () {
         slidesToScroll: 1
       }
     }]
+  }); //validation
+
+  var selector = document.querySelectorAll('input[type="tel"]');
+  var tel = new Inputmask("+7 (999) 999-99-99");
+  tel.mask(selector);
+
+  var validateForms = function validateForms(selector, rules, succesModal, yaGoal) {
+    new window.JustValidate(selector, {
+      rules: rules,
+      messages: {
+        tel: "Введите корректный номер",
+        email: 'My custom message about error (one error message for all rules)'
+      },
+      submitHandler: function submitHandler(form) {
+        $(form).children('.form-wrapper').hide();
+        $(form).children('.ok').show();
+        var formData = new FormData(form);
+        var path = window.location.pathname === "/" ? "/index" : window.location.pathname;
+        formData.append("question", path);
+        var xhr = new XMLHttpRequest();
+
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+              console.log('отправлено');
+            }
+          }
+        };
+
+        xhr.open('POST', '/request', true);
+        xhr.send(formData);
+        form.reset();
+      }
+    });
+  };
+
+  validateForms('#form1', {
+    tel: {
+      required: true,
+      strength: {
+        custom: '[^_]$'
+      }
+    }
   });
+  validateForms('#form2', {
+    tel: {
+      required: true,
+      strength: {
+        custom: '[^_]$'
+      }
+    }
+  });
+  validateForms('#form3', {
+    tel: {
+      required: true,
+      strength: {
+        custom: '[^_]$'
+      }
+    }
+  });
+  validateForms('#form4', {
+    tel: {
+      required: true,
+      strength: {
+        custom: '[^_]$'
+      }
+    }
+  });
+  validateForms('#form5', {
+    email: {
+      required: true,
+      email: true
+    }
+  }); //   if ($('.s-banner').attr("banner")) {
+  //     validateForms('#form3', {
+  //       tel: {
+  //         required: true,
+  //         strength: {
+  //           custom: '[^_]$'
+  //         }
+  //       }
+  //     });
+  //   };
 });
