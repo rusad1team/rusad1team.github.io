@@ -160,13 +160,16 @@ $(document).ready(function () {
           $(form).children('.ok').show();
         } else if ($(form).hasClass('form-email')) {
           $('.pop-email').addClass('popup-active');
+          $('.close-me').on('click', function () {
+            $('.pop-email').removeClass('popup-active');
+          });
         } else {
           $('.ok-pop').addClass('popup-active');
+          $('.close-me').on('click', function () {
+            $('.ok-pop').removeClass('popup-active');
+          });
         }
 
-        $('.close-me').on('click', function () {
-          $('.ok-pop').removeClass('popup-active');
-        });
         var formData = new FormData(form);
         var path = window.location.pathname === "/" ? "/index" : window.location.pathname;
         formData.append("question", path);
