@@ -43,32 +43,7 @@ $(document).ready(function () {
     });
   };
 
-  sanwichToggle(); //popup
-
-  function popupAct() {
-    var popupBtn = document.querySelectorAll('.popup-btn'); //включить, выключить по клику
-
-    for (var i = 0; i < popupBtn.length; i++) {
-      popupBtn[i].addEventListener('click', function () {
-        document.querySelector('.popup-over').classList.toggle('popup-active');
-
-        if (overFlow.classList.contains('popup-active')) {
-          overFlow.addEventListener('click', function () {
-            if (!popUp.contains(event.target)) {
-              overFlow.classList.remove('popup-active');
-            }
-          });
-        }
-      });
-    }
-  }
-
-  $('.close-me').on('click', function () {
-    $('.popup-over').removeClass('popup-active');
-  });
-  popupAct();
-  var popUp = document.querySelector('.popup');
-  var overFlow = document.querySelector('.popup-over'); //faq
+  sanwichToggle(); //faq
   // $('.faq-item__header').on('click', function() {
   //     $(this).next().slideToggle();
   // })
@@ -141,7 +116,32 @@ $(document).ready(function () {
         slidesToScroll: 1
       }
     }]
-  }); //validation
+  }); //popup
+
+  function popupAct() {
+    var popupBtn = document.querySelectorAll('.popup-btn'); //включить, выключить по клику
+
+    for (var i = 0; i < popupBtn.length; i++) {
+      popupBtn[i].addEventListener('click', function () {
+        document.querySelector('.popup-over').classList.toggle('popup-active');
+
+        if (overFlow.classList.contains('popup-active')) {
+          overFlow.addEventListener('click', function () {
+            if (!popUp.contains(event.target)) {
+              overFlow.classList.remove('popup-active');
+            }
+          });
+        }
+      });
+    }
+  }
+
+  $('.close-me').on('click', function () {
+    $('.popup-over').removeClass('popup-active');
+  });
+  popupAct();
+  var popUp = document.querySelector('.popup');
+  var overFlow = document.querySelector('.popup-over'); //validation
 
   var selector = document.querySelectorAll('input[type="tel"]');
   var tel = new Inputmask("+7 (999) 999-99-99");
@@ -155,8 +155,18 @@ $(document).ready(function () {
         email: 'My custom message about error (one error message for all rules)'
       },
       submitHandler: function submitHandler(form) {
-        $(form).children('.form-wrapper').hide();
-        $(form).children('.ok').show();
+        if ($(form).hasClass('popup-form')) {
+          $(form).children('.form-wrapper').hide();
+          $(form).children('.ok').show();
+        } else if ($(form).hasClass('form-email')) {
+          $('.pop-email').addClass('popup-active');
+        } else {
+          $('.ok-pop').addClass('popup-active');
+        }
+
+        $('.close-me').on('click', function () {
+          $('.ok-pop').removeClass('popup-active');
+        });
         var formData = new FormData(form);
         var path = window.location.pathname === "/" ? "/index" : window.location.pathname;
         formData.append("question", path);
