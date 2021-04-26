@@ -227,14 +227,5 @@ $(document).ready(function () {
       required: true,
       email: true
     }
-  }); //   if ($('.s-banner').attr("banner")) {
-  //     validateForms('#form3', {
-  //       tel: {
-  //         required: true,
-  //         strength: {
-  //           custom: '[^_]$'
-  //         }
-  //       }
-  //     });
-  //   };
+  });
 });
