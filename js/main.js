@@ -105,6 +105,7 @@ $(document).ready(function () {
     mobileFirst: true,
     slidesToShow: 1,
     arrows: false,
+    centerMode: true,
     dots: true,
     responsive: [{
       breakpoint: 769,
@@ -114,6 +115,7 @@ $(document).ready(function () {
   $('.profi-items').slick({
     mobileFirst: true,
     arrows: false,
+    centerMode: true,
     dots: true,
     responsive: [{
       breakpoint: 800,
@@ -125,6 +127,10 @@ $(document).ready(function () {
         slidesToScroll: 1
       }
     }]
+  });
+  $(window).resize(function () {
+    $('.profi-items').slick('resize');
+    $('.sorts-wrap').slick('resize');
   }); //popup
 
   function popupAct() {
