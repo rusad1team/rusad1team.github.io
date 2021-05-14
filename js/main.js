@@ -4,8 +4,8 @@ $(document).ready(function () {
   //sandwich
   var sanwichToggle = function sanwichToggle() {
     $('.sandwich').on('click', function () {
-      $('.nav-overlay').fadeToggle('fast');
-      $('.content').toggleClass('content--active');
+      $('.nav-overlay').fadeToggle('fast'); // $('.content').toggleClass('content--active');
+
       $(this).toggleClass('is-active');
     });
     $(window).resize(function () {
@@ -20,8 +20,7 @@ $(document).ready(function () {
           ) {
               categories.fadeOut(); // скрываем его
 
-              $('.sandwich').removeClass('is-active');
-              $('.content').removeClass('content--active');
+              $('.sandwich').removeClass('is-active'); // $('.content').removeClass('content--active');
             }
         });
       }
@@ -33,13 +32,9 @@ $(document).ready(function () {
         $('.sandwich').removeClass('is-active');
       }
 
-      ;
-
-      if ($(window).width() > 1101) {
-        $('.content').removeClass('content--active');
-      }
-
-      ;
+      ; // if ($(window).width() > 1101) {
+      //     $('.content').removeClass('content--active');
+      // };
     });
   };
 
@@ -237,10 +232,15 @@ $(document).ready(function () {
       }
     }
   });
-  validateForms('#form5', {
-    email: {
-      required: true,
-      email: true
-    }
-  });
+
+  if ($('.s-banner').attr("banner")) {
+    validateForms('#form5', {
+      email: {
+        required: true,
+        email: true
+      }
+    });
+  }
+
+  ;
 });
