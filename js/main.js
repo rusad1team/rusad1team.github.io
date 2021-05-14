@@ -5,8 +5,8 @@ $(document).ready(function () {
   var sanwichToggle = function sanwichToggle() {
     $('.sandwich').on('click', function () {
       $('.nav-overlay').fadeToggle('fast');
-      $(this).toggleClass('is-active');
       $('.content').toggleClass('content--active');
+      $(this).toggleClass('is-active');
     });
     $(window).resize(function () {
       if ($(window).width() <= 1100) {
